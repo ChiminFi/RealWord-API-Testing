@@ -1,4 +1,8 @@
+import os
+
+import psycopg
 import pytest
+from dotenv import load_dotenv
 
 from src.clients.article_client import ArticleClient
 from src.clients.auth_client import AuthClient
@@ -11,6 +15,8 @@ from src.utils.data_factory import (
     make_comment_data,
     make_user_data,
 )
+
+load_dotenv()
 
 
 @pytest.fixture
@@ -196,3 +202,16 @@ def multiple_articles(article_client, logged_in_user_factory, request):
         "user_a": {**user_a, "count": article_count_a},
         "user_b": {**user_b, "count": article_count_b},
     }
+
+
+@pytest.fixture
+def db_connection():
+    conn = psycopg.connect(
+        host=os.getenv("DB_HOST"),
+        port=os.getenv("DB_PORT"),
+        dbname=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+    )
+    yield conn
+    conn.close()

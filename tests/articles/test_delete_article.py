@@ -1,4 +1,8 @@
+import pytest
+
+
 # ARTICLE 13
+@pytest.mark.smoke
 def test_delete_article(article_client, article_with_owner):
     slug = article_with_owner["article"]["slug"]
     res = article_client.delete_article(

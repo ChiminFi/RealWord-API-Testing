@@ -8,6 +8,7 @@ authors = [
 ]
 requires-python = ">=3.14"
 dependencies = [
+    "psycopg[binary]>=3.3.5",
     "python-dotenv>=1.2.3",
     "requests>=2.34.2",
 ]
@@ -24,6 +25,7 @@ dev = [
     "faker>=40.38.0",
     "mypy>=2.3.1",
     "pytest>=9.1.1",
+    "pytest-html>=4.2.0",
     "ruff>=0.16.7",
     "types-requests>=2.33.0.20260906",
 ]

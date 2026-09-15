@@ -1,4 +1,8 @@
+import pytest
+
+
 # COMMENT 004
+@pytest.mark.smoke
 def test_create_comment(
     article_with_owner,
     logged_in_user_factory,

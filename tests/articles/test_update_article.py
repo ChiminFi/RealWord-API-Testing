@@ -1,7 +1,10 @@
 import uuid
 
+import pytest
+
 
 # ARTICLE 007
+@pytest.mark.smoke
 def test_update_article_body(article_client, article_with_owner):
     slug = article_with_owner["article"]["slug"]
     token = article_with_owner["user"]["token"]

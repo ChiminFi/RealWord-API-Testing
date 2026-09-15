@@ -1,3 +1,7 @@
+import pytest
+
+
+@pytest.mark.smoke
 def test_register(auth_client, unique_user_data):
     res = auth_client.register(
         username=unique_user_data["username"],
@@ -13,6 +17,7 @@ def test_register(auth_client, unique_user_data):
     assert data["user"]["token"]
 
 
+@pytest.mark.smoke
 def test_register_with_registered_email(auth_client, unique_user_data):
     res_reg1 = auth_client.register(
         username=unique_user_data["username"],

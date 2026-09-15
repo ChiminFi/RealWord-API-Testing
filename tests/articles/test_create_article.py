@@ -1,4 +1,8 @@
+import pytest
+
+
 # ARTICLE 003
+@pytest.mark.smoke
 def test_create_article(article_client, logged_in_user, unique_article_data):
     res = article_client.create_article(
         title=unique_article_data["title"],

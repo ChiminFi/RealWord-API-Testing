@@ -1,4 +1,8 @@
+import pytest
+
+
 # COMMENT 001
+@pytest.mark.smoke
 def test_get_comments(comment_client, article_and_comment):
     res = comment_client.get_comments(
         slug=article_and_comment["article"]["slug"]

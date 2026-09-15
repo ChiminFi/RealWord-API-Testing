@@ -1,7 +1,10 @@
 import random
 
+import pytest
+
 
 # COMMENT 007
+@pytest.mark.smoke
 def test_delete_comment(comment_client, article_and_comment):
     slug = article_and_comment["article"]["slug"]
     comment_id = article_and_comment["comment"]["id"]

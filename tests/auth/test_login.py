@@ -2,6 +2,7 @@ import pytest
 
 
 # TC_AUTH_004
+@pytest.mark.smoke
 def test_login(auth_client, registered_user):
     res = auth_client.login(
         email=registered_user["email"], password=registered_user["password"]
@@ -26,6 +27,7 @@ def test_login_with_wrong_password(auth_client, registered_user):
     assert "user" not in res.json()
 
 
+@pytest.mark.smoke
 def test_get_user_with_logged_in_token(auth_client, logged_in_user):
     res = auth_client.get_current_user(token=logged_in_user["token"])
     data = res.json()
@@ -43,7 +45,7 @@ def test_get_user_without_token(auth_client):
 
 
 @pytest.mark.xfail(
-    reason="BUG-AUTH-001: malformed token return 500 instead of 401",
+    reason="BUG-AUTH-001: invalid Bearer token returns 500 instead of 401",
     strict=True,
 )
 def test_get_user_with_invalid_token(auth_client):

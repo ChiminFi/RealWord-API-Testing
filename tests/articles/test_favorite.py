@@ -1,6 +1,7 @@
 import pytest
 
 
+@pytest.mark.smoke
 def test_unfavorite_favorite_unfavorite(
     article_client, logged_in_user_factory, article_with_owner
 ):  # noqa: E501
