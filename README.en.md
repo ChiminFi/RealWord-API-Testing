@@ -1,6 +1,6 @@
 # RealWorld API Automation Testing
 
-[简体中文](README.md) | **简体中文**
+[简体中文](README.md) | **English**
 
 ## Overview
 
