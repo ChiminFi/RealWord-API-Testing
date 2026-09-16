@@ -1,8 +1,11 @@
 from typing import Any
 
 import psycopg
+import pytest
 
 from src.config.settings import DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER
+
+pytestmark = pytest.mark.db
 
 
 def create_connection() -> psycopg.Connection:

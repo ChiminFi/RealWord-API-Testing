@@ -1,6 +1,7 @@
 import os
 
-import psycopg
+# import psycopg
+import pytest
 from dotenv import load_dotenv
 from psycopg.rows import dict_row
 
@@ -31,6 +32,8 @@ load_dotenv()
 
 #     cursor.close()
 #     conn.close()
+
+pytestmark = pytest.mark.db
 
 
 def test_created_article_saved_to_database(

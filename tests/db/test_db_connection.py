@@ -1,4 +1,8 @@
+import pytest
+
 from src.db.db_client import execute_query
+
+pytestmark = pytest.mark.db
 
 
 def test_select_one():
