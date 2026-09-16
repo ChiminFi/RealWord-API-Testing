@@ -3,7 +3,14 @@ from typing import Any
 import psycopg
 import pytest
 
-from src.config.settings import DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER
+from src.config.settings import (
+    DB_HOST,
+    DB_NAME,
+    DB_PASSWORD,
+    DB_PORT,
+    DB_SSLMODE,
+    DB_USER,
+)
 
 pytestmark = pytest.mark.db
 
@@ -15,6 +22,7 @@ def create_connection() -> psycopg.Connection:
         dbname=DB_NAME,
         user=DB_USER,
         password=DB_PASSWORD,
+        sslmode=DB_SSLMODE,
     )
 
 

@@ -3,6 +3,8 @@ import logging
 import requests
 from requests import Response
 
+from src.config.settings import REQUEST_TIMEOUT
+
 logger = logging.getLogger(__name__)
 
 
@@ -25,7 +27,7 @@ class BaseClient:
             url=url,
             params=params,
             headers=headers,
-            timeout=10,
+            timeout=REQUEST_TIMEOUT,
         )
 
         logger.info(
@@ -50,7 +52,7 @@ class BaseClient:
             url=url,
             json=payload,
             headers=headers,
-            timeout=10,
+            timeout=REQUEST_TIMEOUT,
         )
 
         logger.info(
@@ -75,7 +77,7 @@ class BaseClient:
             url=url,
             json=payload,
             headers=headers,
-            timeout=10,
+            timeout=REQUEST_TIMEOUT,
         )
 
         logger.info(
@@ -90,7 +92,11 @@ class BaseClient:
         url = f"{self.base_url}{endpoint}"
 
         logger.info("DEL %s", url)
-        res = self.session.delete(url=url, headers=headers, timeout=10)
+        res = self.session.delete(
+            url=url,
+            headers=headers,
+            timeout=REQUEST_TIMEOUT,
+        )
 
         logger.info(
             "DEL %s -> %s",

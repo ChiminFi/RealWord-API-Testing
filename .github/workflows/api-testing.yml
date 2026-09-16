@@ -10,6 +10,12 @@ jobs:
 
     env:
       BASE_URL: ${{ secrets.BASE_URL }}
+      DB_HOST: ${{ secrets.DB_HOST }}
+      DB_PORT: ${{ secrets.DB_PORT }}
+      DB_NAME: ${{ secrets.DB_NAME }}
+      DB_USER: ${{ secrets.DB_USER }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      DB_SSLMODE: ${{ secrets.DB_SSLMODE }}
 
     steps:
       - name: Checkout repository
@@ -26,10 +32,13 @@ jobs:
       - name: Install dependencies
         run: uv sync
 
+      - name: Warm up Render API
+        run: curl --fail --retry 5 --retry-delay 5 --max-time 30 "$BASE_URL/api/articles"
+
       - name: Run API tests
         run: |
           mkdir -p reports
-          uv run pytest -m "not db" \
+          uv run pytest \
            --html=reports/report.html \
            --self-contained-html
 
